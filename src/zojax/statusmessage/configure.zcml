@@ -1,0 +1,29 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <subscriber handler=".handler.afterCallHandler" />
+
+  <!-- messages -->
+  <adapter
+     name="info"
+     factory=".message.InformationMessage" />
+
+  <adapter
+     name="warning"
+     factory=".message.WarningMessage" />
+
+  <adapter
+     name="error"
+     factory=".message.ErrorMessage" />
+
+  <!-- default message service -->
+  <adapter factory=".session.getMessageService" />
+
+  <!-- browser views -->
+  <adapter
+     name="statusMessage"
+     factory=".message.StatusMessage" />
+
+  <!-- default styles -->
+  <include file="styles.zcml" />
+
+</configure>

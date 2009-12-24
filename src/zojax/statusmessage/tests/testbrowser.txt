@@ -1,0 +1,28 @@
+======================
+Render Status Messages
+======================
+
+  >>> from zope.testbrowser.testing import Browser
+
+  >>> actor = Browser()
+  >>> actor.addHeader("Authorization", "Basic mgr:mgrpw")
+  >>> actor.handleErrors = False
+
+Render message in current request
+
+  >>> actor.open("http://localhost/test1.html")
+  >>> '<div class="statusMessage">Test message</div>' in actor.contents
+  True
+
+Render message in next request after redirect
+
+  >>> actor.open("http://localhost/test2.html")
+  >>> actor.url
+  'http://localhost/test.html'
+
+  >>> print actor.contents
+  <html>
+    <body>
+      <div><div class="statusMessage">Test message with redirect</div>...
+    </body>
+  </html>

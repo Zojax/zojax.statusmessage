@@ -1,0 +1,47 @@
+/* zrt-cssregistry: */
+
+.z-portal-statusmessage {
+  margin: 0em;
+}
+
+.statusMessage,
+.statusWarningMessage,
+.statusStopMessage {
+  background-color: notifyBackgroundColor;
+  border: borderWidth borderStyle notifyBorderColor;
+  color: fontColor;
+  font-size: fontSmallSize;
+  font-weight: bold;
+  margin-bottom: 2em;
+  padding: 1.5em 1em 1.5em 5.5em;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: 10px 50%;
+}
+
+.statusMessage {
+  background-image: url(statusmessage-information.png);
+}
+
+.statusWarningMessage {
+  background-image: url(statusmessage-warning.png);
+}
+
+.statusStopMessage {
+  background-image: url(statusmessage-error.png);
+}
+
+.statusMessage a,
+.statusWarningMessage a,
+.statusStopMessage a {
+  color: fontColor;
+}
+
+.statusMessage ul,
+.statusWarningMessage ul,
+.statusStopMessage ul { 
+  margin-top: 0.5em;
+  margin-left: 1em;
+  list-style-type: square;
+  white-space: nowrap;
+}

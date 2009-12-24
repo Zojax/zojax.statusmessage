@@ -1,0 +1,81 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zope">
+
+  <!-- This file is the equivalent of site.zcml and it is -->
+  <!-- used for functional testing setup -->
+
+  <include package="zope.component" file="meta.zcml" />
+  <include package="zope.securitypolicy" file="meta.zcml" />
+  <include package="zope.app.component" file="meta.zcml" />
+  <include package="zope.app.security" file="meta.zcml" />
+  <include package="zope.app.pagetemplate" file="meta.zcml" />
+
+  <include package="zope.securitypolicy" />
+  <include package="zope.contentprovider" />
+  <include package="zope.app.security" />
+  <include package="zope.app.zcmlfiles" />
+  <include package="zope.app.authentication" />
+  <include package="zope.session" />
+
+  <include package="zojax.cacheheaders" />
+  <include package="zojax.statusmessage" />
+
+  <browser:page
+     for="*"
+     name="test.html"
+     class="zojax.statusmessage.tests.view.TestView"
+     permission="zope.Public" />
+
+  <browser:page
+     for="*"
+     name="test1.html"
+     class="zojax.statusmessage.tests.view.TestView"
+     attribute="test"
+     permission="zope.Public" />
+
+  <browser:page
+     for="*"
+     name="test2.html"
+     class="zojax.statusmessage.tests.view.TestView"
+     attribute="redirect"
+     permission="zope.Public" />
+
+  <securityPolicy
+     component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy" />
+
+  <role id="zope.Anonymous" title="Everybody"
+        description="All users have this role implicitly" />
+  <role id="zope.Manager" title="Site Manager" />
+
+  <!-- Replace the following directive if you don't want public access -->
+  <grant permission="zope.View"
+         role="zope.Anonymous" />
+
+  <grant permission="zope.app.dublincore.view"
+         role="zope.Anonymous" />
+
+  <!-- Principals -->
+  <unauthenticatedPrincipal
+      id="zope.anybody"
+      title="Unauthenticated User" />
+
+  <!-- Principal that tests generally run as -->
+  <principal
+      id="zope.mgr"
+      title="Manager"
+      login="mgr"
+      password="mgrpw" />
+
+  <principal
+      id="zope.user"
+      title="User"
+      login="user"
+      password="userpw" />
+
+  <grant role="zope.Manager" principal="zope.mgr" />
+
+  <grantAll role="zope.Manager" />
+
+</configure>
